@@ -6,7 +6,7 @@ const theme = createTheme({
       main: "#000000", // Preto
     },
     secondary: {
-      main: "#FFD700", // Dourado
+      main: "#ffff99", // Dourado
     },
     text: {
       primary: "#FFFFFF", // Branco

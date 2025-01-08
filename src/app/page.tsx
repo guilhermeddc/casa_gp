@@ -1,36 +1,38 @@
 "use client";
 
-import { Box, Typography, Button, Grid, Card, Container } from "@mui/material";
-import { motion } from "framer-motion";
+import { Box, Typography, Button, Grid, Container, Link } from "@mui/material";
 import Image from "next/image";
-
-interface Girl {
-  id: string;
-  name: string;
-  photoUrl: string;
-}
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import ResponsiveAppBar from "@/shared/components/appbar/AppBar";
 
 export default function Home() {
-  const girls: Girl[] = [
-    { id: "1", name: "Garota 1", photoUrl: "/images/image1.png" },
-    { id: "2", name: "Garota 2", photoUrl: "/images/image2.png" },
+  const router = useRouter();
+
+  const acompanhantes = [
+    { id: "1", name: "Lorena", photoUrl: "/images/image1.png" },
+    { id: "2", name: "Naty", photoUrl: "/images/image2.png" },
+    { id: "3", name: "Ágatha", photoUrl: "/images/image3.png" },
   ];
 
   return (
     <Box sx={{ backgroundColor: "primary.main", color: "text.primary" }}>
-      {/* Hero Banner */}
+      {/* Cabeçalho */}
+      <ResponsiveAppBar />
+      {/* Seção de Boas-Vindas */}
       <Box
+        id="inicio"
         sx={{
-          height: "100vh",
+          height: { xs: "60vh", sm: "80vh" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          backgroundImage: "url(/banner.jpg)",
+          backgroundImage: "url(/images/banner2.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          position: "relative",
+          padding: { xs: 4, sm: 6 },
         }}
       >
         <motion.div
@@ -38,159 +40,147 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <Typography variant="h2" sx={{ mb: 2, fontWeight: 600 }}>
+          <Typography
+            variant="h2"
+            sx={{
+              mb: 2,
+              fontWeight: 600,
+              fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
+            }}
+          >
             Bem-vindo à Casa Luxuosa Elegance
           </Typography>
           <Typography
             variant="h6"
-            sx={{ mb: 4, maxWidth: "600px", mx: "auto" }}
+            sx={{
+              mb: 4,
+              maxWidth: "600px",
+              mx: "auto",
+              fontSize: { xs: "0.875rem", sm: "1rem", md: "1.25rem" },
+            }}
           >
             Um espaço de requinte e privacidade para momentos inesquecíveis.
           </Typography>
           <Button
             variant="contained"
             color="secondary"
-            href="#sobre"
-            sx={{ px: 4, py: 1.5, fontSize: "1.2rem", borderRadius: "8px" }}
+            href="#acompanhantes"
+            sx={{
+              px: 4,
+              py: 1.5,
+              fontSize: { xs: "0.875rem", sm: "1rem", md: "1.2rem" },
+              borderRadius: "8px",
+            }}
           >
-            Saiba Mais
+            Conheça Nossas Acompanhantes
           </Button>
         </motion.div>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: 20,
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: "8px",
-          }}
-        >
-          {[...Array(3)].map((_, index) => (
-            <Box
-              key={index}
-              sx={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                backgroundColor: index === 0 ? "secondary.main" : "white",
-              }}
-            />
-          ))}
-        </Box>
       </Box>
-
-      {/* Sobre a Casa */}
-      <Container id="sobre" sx={{ py: 8 }}>
+      {/* Seção de Acompanhantes */}
+      <Container id="acompanhantes" sx={{ py: 8 }}>
         <Typography
           variant="h4"
           align="center"
-          sx={{ mb: 6, fontWeight: 600, textTransform: "uppercase" }}
+          sx={{
+            mb: 6,
+            fontWeight: 600,
+            textTransform: "uppercase",
+            fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem" },
+          }}
         >
-          Sobre a Casa
+          Nossas Acompanhantes
         </Typography>
-        <Grid container spacing={6}>
-          {[
-            {
-              title: "Ambiente Exclusivo",
-              description:
-                "Decoração luxuosa, espaços climatizados e aromatizados para oferecer uma experiência sensorial única.",
-            },
-            {
-              title: "Instalações Premium",
-              description:
-                "Suítes temáticas com iluminação ajustável, banheiras de hidromassagem e som ambiente.",
-            },
-            {
-              title: "Equipe Especializada",
-              description:
-                "Atendimento multilíngue, profissionalismo e discrição garantidos.",
-            },
-            {
-              title: "Extras e Mimos",
-              description:
-                "Welcome drink, programa de fidelidade e transporte privativo para clientes VIP.",
-            },
-          ].map((item, index) => (
-            <Grid item xs={12} md={6} key={index}>
+        <Grid container spacing={4}>
+          {acompanhantes.map((acompanhante) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={acompanhante.id}
+              onClick={() => router.push(`/santa-maria-rs/${acompanhante.id}`)}
+            >
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3 }}
               >
-                <Card
+                <Box
                   sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-                    backgroundColor: "secondary.main",
-                    color: "primary.main",
-                    p: 4,
+                    position: "relative",
+                    width: "100%",
+                    height: 0,
+                    paddingBottom: "133%", // Proporção 3:4
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    border: "1px solid",
+                    borderColor: "secondary.main",
+                    backgroundColor: "primary.light",
                   }}
                 >
-                  <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
-                    {item.title}
-                  </Typography>
-                  <Typography>{item.description}</Typography>
-                </Card>
+                  <Image
+                    src={acompanhante.photoUrl}
+                    alt={acompanhante.name}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </Box>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mt: 2,
+                    fontWeight: 600,
+                    textAlign: "center",
+                    fontSize: { xs: "1rem", sm: "1.25rem" },
+                  }}
+                >
+                  {acompanhante.name}
+                </Typography>
               </motion.div>
             </Grid>
           ))}
         </Grid>
       </Container>
-
-      {/* Galeria */}
-      <Box id="galeria" sx={{ py: 8, backgroundColor: "primary.light" }}>
+      {/* Seção de Valores */}
+      <Box id="valores" sx={{ py: 8, backgroundColor: "primary.light" }}>
         <Container>
           <Typography
             variant="h4"
             align="center"
             sx={{ mb: 6, fontWeight: 600, textTransform: "uppercase" }}
           >
-            Nossas Garotas
+            Nossos Valores
           </Typography>
-          <Grid container spacing={4}>
-            {girls.map((girl) => (
-              <Grid item xs={12} sm={6} md={4} key={girl.id}>
+          <Grid container spacing={4} justifyContent="center">
+            {[
+              { service: "30 Minutos", price: "R$ 150" },
+              { service: "1 Hora", price: "R$ 250" },
+              { service: "2 Horas", price: "R$ 450" },
+              { service: "Pernoite", price: "R$ 1.200" },
+            ].map((value, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <Box
                     sx={{
+                      textAlign: "center",
+                      p: 3,
                       border: "1px solid",
                       borderColor: "secondary.main",
                       borderRadius: "8px",
-                      overflow: "hidden",
+                      backgroundColor: "primary.light",
+                      color: "text.primary",
                     }}
                   >
-                    <Image
-                      src={girl.photoUrl}
-                      alt={girl.name}
-                      width={600}
-                      height={800}
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        display: "block",
-                      }}
-                    />
-                    <Box sx={{ p: 2, textAlign: "center" }}>
-                      <Typography variant="h6">{girl.name}</Typography>
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                        sx={{ mt: 2, textTransform: "none" }}
-                      >
-                        Ver Perfil
-                      </Button>
-                    </Box>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                      {value.service}
+                    </Typography>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      {value.price}
+                    </Typography>
                   </Box>
                 </motion.div>
               </Grid>
@@ -198,25 +188,53 @@ export default function Home() {
           </Grid>
         </Container>
       </Box>
-
-      {/* Contato */}
+      {/* Seção de Contato */}
+      <Container id="contato" sx={{ py: 8 }}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ mb: 6, fontWeight: 600, textTransform: "uppercase" }}
+        >
+          Informações e Reserva
+        </Typography>
+        <Box sx={{ textAlign: "center" }}>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            <strong>Telefone:</strong> (55) 99999-9999
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            <strong>WhatsApp:</strong>{" "}
+            <Link
+              href="https://wa.me/559999999999"
+              target="_blank"
+              rel="noopener"
+              color="secondary"
+            >
+              Clique aqui para conversar
+            </Link>
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            <strong>Horário de Funcionamento:</strong> 18h às 4h
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            <strong>Endereço:</strong> Rua das Orquídeas, 987, Santa Maria - RS
+          </Typography>
+        </Box>
+      </Container>
+      {/* Rodapé */}
       <Box
         sx={{
           py: 6,
-          backgroundColor: "secondary.main",
-          color: "primary.main",
+          backgroundColor: "primary.dark",
+          color: "text.primary",
           textAlign: "center",
         }}
       >
-        <Typography variant="h4" sx={{ mb: 4, fontWeight: 600 }}>
-          Contato
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          Este site contém conteúdo adulto. A entrada é permitida apenas para
+          maiores de 18 anos.
         </Typography>
-        <Typography>
-          Endereço: Rua das Orquídeas, 987, Centro, Gramado - RS
-          <br />
-          Telefone: (55) 1234-5678
-          <br />
-          Horário de Funcionamento: 18h - 04h
+        <Typography variant="body2">
+          © 2024 Casa Luxuosa Elegance - Todos os direitos reservados.
         </Typography>
       </Box>
     </Box>
