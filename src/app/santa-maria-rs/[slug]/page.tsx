@@ -3,7 +3,6 @@
 import { Box, Typography, Grid, Container, Link } from "@mui/material";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ResponsiveAppBar from "@/shared/components/appbar/AppBar";
 
 export default function Profile() {
   const profile = {
@@ -41,9 +40,6 @@ export default function Profile() {
 
   return (
     <Box sx={{ backgroundColor: "primary.main", color: "text.primary" }}>
-      {/* Cabeçalho */}
-      <ResponsiveAppBar />
-
       {/* Seção de Perfil */}
       <Container sx={{ py: 8 }}>
         <Grid container spacing={4}>
@@ -229,24 +225,6 @@ export default function Profile() {
           </Typography>
         </Box>
       </Container>
-
-      {/* Rodapé */}
-      <Box
-        sx={{
-          py: 6,
-          backgroundColor: "primary.dark",
-          color: "text.primary",
-          textAlign: "center",
-        }}
-      >
-        <Typography variant="body1" sx={{ mb: 2 }}>
-          Este site contém conteúdo adulto. A entrada é permitida apenas para
-          maiores de 18 anos.
-        </Typography>
-        <Typography variant="body2">
-          © 2024 Casa Luxuosa Elegance - Todos os direitos reservados.
-        </Typography>
-      </Box>
     </Box>
   );
 }

@@ -13,7 +13,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 
-export default function ResponsiveAppBar() {
+export const ResponsiveAppBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -30,14 +30,17 @@ export default function ResponsiveAppBar() {
       <Toolbar>
         {/* Logo ou Título */}
         <Typography
+          component={Link}
+          href="/"
           variant="h6"
           sx={{
             flexGrow: 1,
             fontSize: { xs: "1rem", sm: "1.25rem" },
             fontWeight: 600,
+            color: "text.primary",
           }}
         >
-          Casa Luxuosa Elegance
+          Casa DoJoB
         </Typography>
 
         {/* Menu para telas maiores */}
@@ -46,7 +49,12 @@ export default function ResponsiveAppBar() {
             href="#inicio"
             color="inherit"
             underline="none"
-            sx={{ mx: 2, fontSize: "1rem", fontWeight: 500 }}
+            sx={{
+              mx: 2,
+              fontSize: "1rem",
+              fontWeight: 500,
+              color: "text.primary",
+            }}
           >
             Início
           </Link>
@@ -54,7 +62,12 @@ export default function ResponsiveAppBar() {
             href="#acompanhantes"
             color="inherit"
             underline="none"
-            sx={{ mx: 2, fontSize: "1rem", fontWeight: 500 }}
+            sx={{
+              mx: 2,
+              fontSize: "1rem",
+              fontWeight: 500,
+              color: "text.primary",
+            }}
           >
             Acompanhantes
           </Link>
@@ -62,7 +75,12 @@ export default function ResponsiveAppBar() {
             href="#valores"
             color="inherit"
             underline="none"
-            sx={{ mx: 2, fontSize: "1rem", fontWeight: 500 }}
+            sx={{
+              mx: 2,
+              fontSize: "1rem",
+              fontWeight: 500,
+              color: "text.primary",
+            }}
           >
             Valores
           </Link>
@@ -70,7 +88,12 @@ export default function ResponsiveAppBar() {
             href="#contato"
             color="inherit"
             underline="none"
-            sx={{ mx: 2, fontSize: "1rem", fontWeight: 500 }}
+            sx={{
+              mx: 2,
+              fontSize: "1rem",
+              fontWeight: 500,
+              color: "text.primary",
+            }}
           >
             Contato
           </Link>
@@ -85,33 +108,42 @@ export default function ResponsiveAppBar() {
             aria-label="menu"
             onClick={handleMenuOpen}
           >
-            <MenuIcon />
+            <MenuIcon
+              sx={{
+                color: "text.primary",
+              }}
+            />
           </IconButton>
+
           <Menu
             anchorEl={anchorEl}
             open={open}
             onClose={handleMenuClose}
             sx={{
               display: { xs: "block", sm: "none" },
+              color: "text.primary",
             }}
           >
             <MenuItem onClick={handleMenuClose}>
-              <Link href="#inicio" color="primary" underline="none">
+              <Link href="/#inicio" underline="none" color="inherit">
                 Início
               </Link>
             </MenuItem>
+
             <MenuItem onClick={handleMenuClose}>
-              <Link href="#acompanhantes" color="primary" underline="none">
+              <Link href="/#acompanhantes" underline="none" color="inherit">
                 Acompanhantes
               </Link>
             </MenuItem>
+
             <MenuItem onClick={handleMenuClose}>
-              <Link href="#valores" color="primary" underline="none">
-                Valores
+              <Link href="/#informacoes" underline="none" color="inherit">
+                Informações
               </Link>
             </MenuItem>
+
             <MenuItem onClick={handleMenuClose}>
-              <Link href="#contato" color="primary" underline="none">
+              <Link href="/#contato" underline="none" color="inherit">
                 Contato
               </Link>
             </MenuItem>
@@ -120,4 +152,4 @@ export default function ResponsiveAppBar() {
       </Toolbar>
     </AppBar>
   );
-}
+};
