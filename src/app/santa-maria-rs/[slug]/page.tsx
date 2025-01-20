@@ -3,6 +3,12 @@
 import { Box, Typography, Grid, Container, Link } from "@mui/material";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  CheckRounded,
+  CloseRounded,
+  PlaylistAddCheckRounded,
+  PriceCheckRounded,
+} from "@mui/icons-material";
 
 export default function Profile() {
   const profile = {
@@ -10,26 +16,39 @@ export default function Profile() {
     age: 22,
     height: "1,65m",
     weight: "58kg",
-    eyeColor: "Castanho",
-    hairColor: "Preto",
-    skinColor: "Branca",
+    feet: 35,
+    naturalness: "Brasileira",
     services: [
+      { name: "Beijo", available: true, note: "Dependendo da higiene" },
+      { name: "Anal", available: false },
       { name: "Oral com preservativo", available: true },
       {
         name: "Oral sem preservativo",
         available: true,
         note: "Sob análise na hora",
       },
-      { name: "Beijo", available: true, note: "Dependendo da higiene" },
-      { name: "Anal", available: false },
       { name: "Inversão", available: true, additional: "R$ 50,00" },
-      // Adicione mais serviços conforme necessário
+      {
+        name: "Amigas para atendimento em dupla",
+        available: true,
+        additional: "R$ 50,00",
+      },
+      {
+        name: "Atende casais com interação feminina",
+        available: true,
+        additional: "R$ 50,00",
+      },
+      {
+        name: "Atende casais sem interação feminina",
+        available: true,
+        additional: "R$ 50,00",
+      },
     ],
     photos: [
       "/images/image1.png",
       "/images/image2.png",
       "/images/image3.png",
-      // Adicione mais URLs de fotos conforme necessário
+      "/images/image2.png",
     ],
     contact: {
       phone: "(54) 99639-7480",
@@ -87,15 +106,11 @@ export default function Profile() {
               <strong>Peso:</strong> {profile.weight}
             </Typography>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Cor dos Olhos:</strong> {profile.eyeColor}
+              <strong>Pés:</strong> {profile.feet}
             </Typography>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Cor do Cabelo:</strong> {profile.hairColor}
+              <strong>Naturalidade:</strong> {profile.naturalness}
             </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              <strong>Cor da Pele:</strong> {profile.skinColor}
-            </Typography>
-            {/* Adicione mais informações pessoais conforme necessário */}
           </Grid>
         </Grid>
       </Container>
@@ -109,36 +124,53 @@ export default function Profile() {
         >
           Serviços Oferecidos
         </Typography>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           {profile.services.map((service, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Box
                 sx={{
                   textAlign: "center",
                   p: 3,
-                  border: "1px solid",
-                  borderColor: "secondary.main",
+                  border: "2px solid",
+                  borderColor: "text.primary",
                   borderRadius: "8px",
                   backgroundColor: service.available
                     ? "primary.light"
-                    : "grey.800",
+                    : "secondary.light",
                   color: service.available ? "text.primary" : "grey.500",
                 }}
               >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    textDecoration: service.available ? "none" : "line-through",
-                  }}
-                >
-                  {service.name}
-                </Typography>
+                <Box display="flex" gap={1} justifyContent="center">
+                  {service.available && service.additional ? (
+                    <PriceCheckRounded fontSize="large" />
+                  ) : service.available && service.note ? (
+                    <PlaylistAddCheckRounded fontSize="large" />
+                  ) : service.available ? (
+                    <CheckRounded fontSize="large" />
+                  ) : (
+                    <CloseRounded fontSize="large" />
+                  )}
+
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    sx={{
+                      fontWeight: 600,
+                      textDecoration: service.available
+                        ? "none"
+                        : "line-through",
+                    }}
+                  >
+                    {service.name}
+                  </Typography>
+                </Box>
+
                 {service.note && (
                   <Typography variant="body2" sx={{ mt: 1 }}>
                     <em>{service.note}</em>
                   </Typography>
                 )}
+
                 {service.additional && (
                   <Typography
                     variant="body2"
@@ -162,6 +194,7 @@ export default function Profile() {
         >
           Galeria de Fotos
         </Typography>
+
         <Grid container spacing={4}>
           {profile.photos.map((photo, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>

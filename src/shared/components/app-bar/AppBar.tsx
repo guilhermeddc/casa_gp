@@ -46,7 +46,7 @@ export const ResponsiveAppBar: React.FC = () => {
         {/* Menu para telas maiores */}
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           <Link
-            href="#inicio"
+            href="/#inicio"
             color="inherit"
             underline="none"
             sx={{
@@ -59,7 +59,7 @@ export const ResponsiveAppBar: React.FC = () => {
             Início
           </Link>
           <Link
-            href="#acompanhantes"
+            href="/#acompanhantes"
             color="inherit"
             underline="none"
             sx={{
@@ -72,7 +72,7 @@ export const ResponsiveAppBar: React.FC = () => {
             Acompanhantes
           </Link>
           <Link
-            href="#valores"
+            href="/#valores"
             color="inherit"
             underline="none"
             sx={{
@@ -85,7 +85,7 @@ export const ResponsiveAppBar: React.FC = () => {
             Valores
           </Link>
           <Link
-            href="#contato"
+            href="/#contato"
             color="inherit"
             underline="none"
             sx={{

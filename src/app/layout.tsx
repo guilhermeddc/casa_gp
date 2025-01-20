@@ -8,6 +8,7 @@ import theme from "@/shared/styles/theme";
 import { Box, Container, Typography } from "@mui/material";
 import { FloatButton, ResponsiveAppBar } from "@/shared/components";
 import Link from "next/link";
+import { CreditCard, CurrencyExchange, Pix } from "@mui/icons-material";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,57 @@ export default function RootLayout({
           <ResponsiveAppBar />
 
           {children}
+
+          {/* Formas de pagamento */}
+
+          <Container sx={{ py: 8 }}>
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{ mb: 6, fontWeight: 600, textTransform: "uppercase" }}
+            >
+              Formas de pagamento
+            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 4,
+                flexWrap: "wrap",
+              }}
+            >
+              <Box display="flex" alignItems="center">
+                <Pix fontSize="large" />
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 600, ml: 2, fontSize: { xs: 24, sm: 20 } }}
+                >
+                  Pix
+                </Typography>
+              </Box>
+
+              <Box display="flex" alignItems="center">
+                <CreditCard fontSize="large" />
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 600, ml: 2, fontSize: { xs: 24, sm: 20 } }}
+                >
+                  Cartão de Crédito e Débito
+                </Typography>
+              </Box>
+
+              <Box display="flex" alignItems="center">
+                <CurrencyExchange fontSize="large" />
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 600, ml: 2, fontSize: { xs: 24, sm: 20 } }}
+                >
+                  Dinheiro
+                </Typography>
+              </Box>
+            </Box>
+          </Container>
 
           {/* Contato */}
           <Box bgcolor="secondary.main" boxShadow={24}>
