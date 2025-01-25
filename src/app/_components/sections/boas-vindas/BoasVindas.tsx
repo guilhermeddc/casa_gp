@@ -6,14 +6,13 @@ import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
+import { Profile } from "@/shared/types";
 
-const acompanhantes = [
-  { id: "1", name: "Lorena", photoUrl: "/images/image1.png" },
-  { id: "2", name: "Naty", photoUrl: "/images/image2.png" },
-  { id: "3", name: "Ágatha", photoUrl: "/images/image3.png" },
-];
+interface IProps {
+  acompanhantes: Profile[];
+}
 
-export const BoasVindas: React.FC = () => {
+export const BoasVindas: React.FC<IProps> = ({ acompanhantes }) => {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay(), Fade()]);
 
   return (
@@ -26,7 +25,7 @@ export const BoasVindas: React.FC = () => {
               className="embla__slide"
               p={{ xs: 4, sm: 6 }}
               sx={{
-                backgroundImage: `url(${acompanhante.photoUrl})`,
+                backgroundImage: `url(${acompanhante.image})`,
               }}
             >
               <Box
@@ -39,7 +38,7 @@ export const BoasVindas: React.FC = () => {
               >
                 <Typography
                   component={Link}
-                  href={`/santa-maria-rs/${acompanhante.name}`}
+                  href={`/santa-maria-rs/${acompanhante.slug}`}
                   variant="h2"
                   sx={{
                     mb: 3,

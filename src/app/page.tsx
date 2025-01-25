@@ -5,14 +5,20 @@ import {
   Informacoes,
   Local,
 } from "./_components/sections";
+import { profileService } from "@/shared/services";
+import PublicLayout from "@/shared/layout/public/Public";
 
-export default function Home() {
+export default async function Home() {
+  const acompanhantes = await profileService.index();
+
   return (
-    <Box sx={{ color: "text.primary" }}>
-      <BoasVindas />
-      <Informacoes />
-      <Local />
-      <Acompanhantes />
-    </Box>
+    <PublicLayout>
+      <Box sx={{ color: "text.primary" }}>
+        <BoasVindas acompanhantes={acompanhantes} />
+        <Informacoes />
+        <Local />
+        <Acompanhantes acompanhantes={acompanhantes} />
+      </Box>
+    </PublicLayout>
   );
 }

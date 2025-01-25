@@ -5,14 +5,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Profile } from "@/shared/types";
 
-const acompanhantes = [
-  { id: "1", name: "Lorena", photoUrl: "/images/image1.png" },
-  { id: "2", name: "Naty", photoUrl: "/images/image2.png" },
-  { id: "3", name: "Ágatha", photoUrl: "/images/image3.png" },
-];
+interface IProps {
+  acompanhantes: Profile[];
+}
 
-export const Acompanhantes: React.FC = () => {
+export const Acompanhantes: React.FC<IProps> = ({ acompanhantes }) => {
   const router = useRouter();
 
   return (
@@ -37,12 +36,13 @@ export const Acompanhantes: React.FC = () => {
             sm={6}
             md={4}
             key={acompanhante.id}
-            onClick={() => router.push(`/santa-maria-rs/${acompanhante.name}`)}
+            onClick={() => router.push(`/santa-maria-rs/${acompanhante.slug}`)}
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.3 }}
+              style={{ cursor: "pointer" }}
             >
               <Box
                 sx={{
@@ -58,7 +58,7 @@ export const Acompanhantes: React.FC = () => {
                 }}
               >
                 <Image
-                  src={acompanhante.photoUrl}
+                  src={acompanhante.image}
                   alt={acompanhante.name}
                   fill
                   style={{ objectFit: "cover" }}
