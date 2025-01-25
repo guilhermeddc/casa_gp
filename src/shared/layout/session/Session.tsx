@@ -1,5 +1,3 @@
-import { useAccessControl } from "@/shared/hooks";
-import { LoadingScreen } from "@/shared/components";
 import { Box } from "@mui/material";
 
 export default function SessionLayout({
@@ -7,12 +5,6 @@ export default function SessionLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { loading } = useAccessControl({ currentArea: "admin" });
-
-  if (loading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <Box
       sx={{
