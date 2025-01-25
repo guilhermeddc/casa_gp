@@ -12,6 +12,7 @@ import { FiImage } from "react-icons/fi";
 import { useFieldArray, useForm } from "react-hook-form";
 import { formSchema, FormValues } from "./validators";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ImageFormValues } from "@/shared/types";
 
 interface IProps {
   id: string;
@@ -54,6 +55,18 @@ export const ModalImagesButton: React.FC<IProps> = ({ id }) => {
     setOpenModalConfirm(false);
   };
 
+  const storeImage = useMutation({
+    mutationKey: ["storeImage", id],
+    mutationFn: (data: ImageFormValues) =>
+      imageService.store({ profile_id: id, images: data.images }),
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => {
+      console.log("*** error", error);
+    },
+  });
+
   const destroyImage = useMutation({
     mutationKey: ["destroyImage", imageId],
     mutationFn: () => imageService.destroy(String(imageId)),
@@ -64,8 +77,7 @@ export const ModalImagesButton: React.FC<IProps> = ({ id }) => {
   });
 
   const onSubmit = (data: FormValues) => {
-    // eslint-disable-next-line
-    console.log("*** data", data);
+    storeImage.mutate({ images: data.images as any, profile_id: id });
   };
 
   return (

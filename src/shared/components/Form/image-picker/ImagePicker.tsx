@@ -124,7 +124,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
             <IconButton
               title="Remover imagem"
               onClick={handleRemoveImage}
-              color="primary"
+              color="secondary"
               sx={{
                 position: "absolute",
                 top: 10,

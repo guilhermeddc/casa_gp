@@ -16,7 +16,8 @@ export const useAccessControl = ({ currentArea }: UseAccessControlProps) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        router.replace("/admin");
+        // TODO: Implementar a lógica de redirecionamento para a área correta
+        // router.replace("/admin");
         setLoading(false); // Se o usuário já está na área correta
       } else {
         router.replace("/login");

@@ -1,45 +1,54 @@
 import { firestore } from "@/shared/lib/firebase";
-import { Image } from "@/shared/types";
+import { Image, ImageFormValues } from "@/shared/types";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
-  orderBy,
   query,
-  Timestamp,
-  updateDoc,
   where,
 } from "firebase/firestore";
 
 const collectionName = "images";
 
 class ImageService {
-  async store({ profile_id, image }: Partial<Image>): Promise<string> {
-    if (!image || image.length === 0) {
+  async store({ profile_id, images }: ImageFormValues): Promise<void> {
+    if (!images || images.length === 0) {
       throw new Error("A imagem é obrigatória");
     }
 
-    const imageFile = image[0] as any;
+    const processImage = async (imageFile: File): Promise<void> => {
+      const imageBase64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result as string);
+        };
+        reader.onerror = (error) => {
+          reject(error);
+        };
+        reader.readAsDataURL(imageFile);
+      });
 
-    const imageBase64 = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve(reader.result as string);
+      const payload: Partial<Image> = {
+        profile_id,
+        image: imageBase64,
       };
-      reader.readAsDataURL(imageFile);
-    });
 
-    const payload: Partial<Image> = {
-      profile_id,
-      image: imageBase64,
+      await addDoc(collection(firestore, collectionName), payload);
     };
 
-    const docRef = await addDoc(collection(firestore, collectionName), payload);
+    // Iterar sobre o array de imagens e criar as promessas
+    const promises = images.map((item) => {
+      const imageFile = item.image[0]; // Pega o primeiro arquivo do FileList
+      if (imageFile) {
+        return processImage(imageFile); // Cria uma promessa para processar e salvar
+      }
+      return Promise.resolve(); // Retorna uma promessa resolvida se não houver arquivo
+    });
 
-    return docRef.id;
+    // Espera todas as promessas serem concluídas
+    await Promise.all(promises);
   }
 
   async index(profile_id: string): Promise<Image[] | null> {

@@ -6,7 +6,7 @@ import {
   PlaylistAddCheckRounded,
   PriceCheckRounded,
 } from "@mui/icons-material";
-import { profileService } from "@/shared/services";
+import { imageService, profileService } from "@/shared/services";
 import { notFound } from "next/navigation";
 import PublicLayout from "@/shared/layout/public/Public";
 
@@ -18,6 +18,7 @@ export default async function Profile({
   const { slug } = await params;
   const data = await profileService.showBySlug(slug);
   if (!data) notFound();
+  const images = await imageService.index(data?.id);
 
   const profile = {
     services: [
@@ -191,7 +192,7 @@ export default async function Profile({
           </Typography>
 
           <Grid container spacing={4}>
-            {profile.photos.map((photo, index) => (
+            {images?.map((item, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box
                   sx={{
@@ -206,7 +207,7 @@ export default async function Profile({
                   }}
                 >
                   <Image
-                    src={photo}
+                    src={item.image}
                     alt={`Foto ${index + 1}`}
                     fill
                     style={{ objectFit: "cover" }}

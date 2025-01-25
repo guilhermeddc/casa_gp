@@ -43,3 +43,8 @@ export type User = {
 export type ResponsiveType =
   | { xs?: number; sm?: number; md?: number; lg?: number; xl?: number }
   | number;
+
+export type ImageFormValues = {
+  profile_id: string;
+  images: { image: FileList }[];
+};
