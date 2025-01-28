@@ -7,9 +7,16 @@ import {
 } from "./_components/sections";
 import { profileService } from "@/shared/services";
 import PublicLayout from "@/shared/layout/public/Public";
+import { Profile } from "@/shared/types";
 
 export default async function Home() {
-  const acompanhantes = await profileService.index();
+  let acompanhantes: Profile[] = [];
+
+  try {
+    acompanhantes = await profileService.index();
+  } catch (error) {
+    console.error("Erro ao buscar acompanhantes:", error);
+  }
 
   return (
     <PublicLayout>
