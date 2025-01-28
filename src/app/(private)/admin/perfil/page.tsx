@@ -1,16 +1,21 @@
 "use client";
 
-import { Button, ImagePicker, TextField, TopBar } from "@/shared/components";
-import PrivateLayout from "@/shared/layout/private/Private";
 import { useForm } from "react-hook-form";
 import { formSchema, FormValues } from "./validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { Profile } from "@/shared/types";
-import { profileService } from "@/shared/services";
 import { useCallback } from "react";
 import { Grid2, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { Profile } from "../../../../shared/types";
+import { profileService } from "../../../../shared/services";
+import PrivateLayout from "../../../../shared/layout/private/Private";
+import {
+  Button,
+  ImagePicker,
+  TextField,
+  TopBar,
+} from "../../../../shared/components";
 
 export default function Page() {
   const router = useRouter();

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FiTrash } from "react-icons/fi";
-import { ModalConfirm } from "@/shared/components";
-import { profileService } from "@/shared/services";
 import { useMutation } from "@tanstack/react-query";
 import { Tooltip } from "@mui/material";
+import { profileService } from "../../../../../../../shared/services";
+import { ModalConfirm } from "../../../../../../../shared/components";
 
 interface DeleteCourseButtonProps {
   itemId: string;

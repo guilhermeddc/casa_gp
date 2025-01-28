@@ -13,8 +13,8 @@ import {
 } from "@mui/material";
 import { Control, useController } from "react-hook-form";
 import { Delete, PhotoCamera } from "@mui/icons-material";
-import { ResponsiveType } from "@/shared/types";
 import Image from "next/image";
+import { ResponsiveType } from "../../../types";
 
 interface ImagePickerProps {
   name: string;

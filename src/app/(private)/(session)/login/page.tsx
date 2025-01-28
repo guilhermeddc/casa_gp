@@ -3,13 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Link from "next/link";
-import { auth } from "@/shared/lib/firebase"; // Ajuste o caminho conforme sua estrutura de pastas
-import { Button, TextField } from "@/shared/components";
 import { Grid2, Stack } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { formSchema, FormValues } from "./validators";
-import SessionLayout from "@/shared/layout/session/Session";
+import { auth } from "../../../../shared/lib/firebase";
+import SessionLayout from "../../../../shared/layout/session/Session";
+import { Button, TextField } from "../../../../shared/components";
 
 export default function Login() {
   const {

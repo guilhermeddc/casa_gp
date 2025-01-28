@@ -1,4 +1,4 @@
-import AppProvider from "@/shared/context";
+import AppProvider from "../shared/context";
 import "./globals.css";
 
 export default function RootLayout({

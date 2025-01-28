@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Sidebar } from "./components";
-import { useAccessControl } from "@/shared/hooks";
-import { LoadingScreen } from "@/shared/components";
 import { Box } from "@mui/material";
+import { LoadingScreen } from "../../components";
+import { useAccessControl } from "../../hooks";
 
 export default function PrivateLayout({
   children,

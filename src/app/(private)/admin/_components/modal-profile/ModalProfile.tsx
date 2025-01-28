@@ -1,20 +1,19 @@
 "use client";
 
-import {
-  Button,
-  ImagePicker,
-  Modal,
-  RichText,
-  TextField,
-} from "@/shared/components";
-import { Profile } from "@/shared/types";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { formSchema, FormValues } from "./validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Grid2, Stack } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
-import { profileService } from "@/shared/services";
+import { Profile } from "../../../../../shared/types";
+import { profileService } from "../../../../../shared/services";
+import {
+  Button,
+  ImagePicker,
+  Modal,
+  TextField,
+} from "../../../../../shared/components";
 
 interface IProps {
   openModal: boolean;

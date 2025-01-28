@@ -1,8 +1,8 @@
 "use client";
 
-import PrivateLayout from "@/shared/layout/private/Private";
-import { TopBar } from "@/shared/components";
 import { useRouter } from "next/router";
+import PrivateLayout from "../../../../../shared/layout/private/Private";
+import { TopBar } from "../../../../../shared/components";
 
 export default function Page() {
   const router = useRouter();

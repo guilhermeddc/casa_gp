@@ -1,5 +1,3 @@
-import { firestore } from "@/shared/lib/firebase";
-import { Profile } from "@/shared/types";
 import {
   addDoc,
   collection,
@@ -13,6 +11,8 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+import { Profile } from "../../types";
+import { firestore } from "../../lib/firebase";
 
 const collectionName = "profiles";
 

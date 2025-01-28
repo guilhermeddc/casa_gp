@@ -1,14 +1,14 @@
 "use client";
 
-import { Button, TopBar } from "@/shared/components";
-import { profileService } from "@/shared/services";
-import { Profile } from "@/shared/types";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { TableProfile, ModalProfile } from "./_components";
 import { Add } from "@mui/icons-material";
-import PrivateLayout from "@/shared/layout/private/Private";
 import { useRouter } from "next/navigation";
+import { Profile } from "../../../shared/types";
+import { profileService } from "../../../shared/services";
+import PrivateLayout from "../../../shared/layout/private/Private";
+import { Button, TopBar } from "../../../shared/components";
 
 export default function Page() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

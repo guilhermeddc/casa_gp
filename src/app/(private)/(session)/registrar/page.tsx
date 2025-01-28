@@ -2,15 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Button, TextField } from "@/shared/components";
+import { Button, TextField } from "../../../../shared/components";
 import { Grid2, Stack } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { formSchema, FormValues } from "./validators";
 import { useMutation } from "@tanstack/react-query";
-import { userService } from "@/shared/services";
-import { User } from "@/shared/types";
-import SessionLayout from "@/shared/layout/session/Session";
+import { userService } from "../../../../shared/services";
+import { User } from "../../../../shared/types";
+import SessionLayout from "../../../../shared/layout/session/Session";
 
 export default function Register() {
   const {

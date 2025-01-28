@@ -1,6 +1,5 @@
 import React from "react";
 import { FaUserNinja } from "react-icons/fa";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 export const AccountToggle: React.FC = () => {
   return (

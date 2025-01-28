@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box, Typography } from "@mui/material";
-import { Modal } from "@/shared/components";
+import { Modal } from "../modal/Modal";
 
 interface IProps {
   title?: string;

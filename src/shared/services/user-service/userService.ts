@@ -1,5 +1,5 @@
-import { auth, firestore } from "@/shared/lib/firebase";
-import { User } from "@/shared/types";
+import { auth, firestore } from "../../lib/firebase";
+import { User } from "../../types";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,

@@ -1,5 +1,3 @@
-import { firestore } from "@/shared/lib/firebase";
-import { Image, ImageFormValues } from "@/shared/types";
 import {
   addDoc,
   collection,
@@ -9,6 +7,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { Image, ImageFormValues } from "../../types";
+import { firestore } from "../../lib/firebase";
 
 const collectionName = "images";
 

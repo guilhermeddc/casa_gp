@@ -5,9 +5,9 @@ import {
   Informacoes,
   Local,
 } from "./_components/sections";
-import { profileService } from "@/shared/services";
-import PublicLayout from "@/shared/layout/public/Public";
-import { Profile } from "@/shared/types";
+import { Profile } from "../shared/types";
+import { profileService } from "../shared/services";
+import PublicLayout from "../shared/layout/public/Public";
 
 export default async function Home() {
   let acompanhantes: Profile[] = [];

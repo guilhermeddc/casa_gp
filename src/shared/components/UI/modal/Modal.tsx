@@ -16,7 +16,7 @@ import {
   Stack,
   CircularProgress,
 } from "@mui/material";
-import { Button } from "@/shared/components";
+import { Button } from "../button/Button";
 
 interface IProps extends Omit<DialogProps, "onClose" | "onClick"> {
   showAccept?: boolean;

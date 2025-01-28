@@ -1,6 +1,5 @@
 "use client";
 
-import { Profile } from "@/shared/types";
 import { FiEdit, FiExternalLink } from "react-icons/fi";
 import { DeleteProfileButton, ModalImagesButton } from "./components";
 import Link from "next/link";
@@ -8,6 +7,7 @@ import Image from "next/image";
 import { DataGrid } from "@mui/x-data-grid";
 import { Stack, Tooltip } from "@mui/material";
 import { ptBR } from "@mui/x-data-grid/locales";
+import { Profile } from "../../../../../shared/types";
 
 interface ProfileTableProps {
   items: Profile[];

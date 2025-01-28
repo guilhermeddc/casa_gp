@@ -6,9 +6,9 @@ import {
   PlaylistAddCheckRounded,
   PriceCheckRounded,
 } from "@mui/icons-material";
-import { imageService, profileService } from "@/shared/services";
 import { notFound } from "next/navigation";
-import PublicLayout from "@/shared/layout/public/Public";
+import { imageService, profileService } from "../../../shared/services";
+import PublicLayout from "../../../shared/layout/public/Public";
 
 export default async function Profile({
   params,

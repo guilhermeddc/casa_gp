@@ -6,13 +6,18 @@ import { Delete, Info } from "@mui/icons-material";
 import { Chip, Grid2, Paper, Stack, Tooltip } from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { Button, ImagePicker, Modal, ModalConfirm } from "@/shared/components";
-import { imageService } from "@/shared/services";
 import { FiImage } from "react-icons/fi";
 import { useFieldArray, useForm } from "react-hook-form";
 import { formSchema, FormValues } from "./validators";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ImageFormValues } from "@/shared/types";
+import { imageService } from "../../../../../../../shared/services";
+import { ImageFormValues } from "../../../../../../../shared/types";
+import {
+  Button,
+  ImagePicker,
+  Modal,
+  ModalConfirm,
+} from "../../../../../../../shared/components";
 
 interface IProps {
   id: string;
