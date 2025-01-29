@@ -6,7 +6,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
-import { Profile } from "@/shared/types";
+import { Profile } from "../../../../shared/types";
 
 interface IProps {
   acompanhantes: Profile[];
